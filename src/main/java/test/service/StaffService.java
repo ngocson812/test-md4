@@ -5,10 +5,7 @@ import org.springframework.stereotype.Service;
 import test.model.Staff;
 import test.repository.StaffRepo;
 
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class StaffService implements IStaffService{
@@ -37,17 +34,26 @@ public class StaffService implements IStaffService{
     }
 
     @Override
-    public List<Staff> sort() {
+    public Staff findByName(String name) {
+        for (Staff s : staffRepo.findAll()) {
+            if (s.getName().toLowerCase(Locale.ROOT).contains(name.toLowerCase(Locale.ROOT))) {
+                return s;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public List<Staff> sortsalary() {
+        List<Staff> list = findAll();
+        list.sort(Comparator.comparing(Staff::getSalary));
+        return list;
+    }
+    @Override
+    public List<Staff> sortage() {
         List<Staff> list = findAll();
         list.sort(Comparator.comparing(Staff::getAge));
         return list;
     }
 
-    @Override
-    public List<Staff> reverse() {
-        List<Staff> list = findAll();
-        list.sort(Comparator.comparing(Staff::getAge));
-        Collections.reverse(list);
-        return list;
-    }
 }

@@ -10,6 +10,7 @@ public interface IStaffService {
     public void save(Staff staff);
     public void delete(int id);
     public Optional<Staff> findById(int id);
-    List<Staff> sort();
-    List<Staff> reverse();
+   public Staff findByName(String name);
+    public List<Staff> sortsalary();
+    public List<Staff> sortage();
 }

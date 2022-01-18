@@ -79,22 +79,6 @@ public class StaffController {
         return new ModelAndView("redirect:/staff");
     }
 
-    @PostMapping("/sort")
-    public ModelAndView sort() {
-        List<Staff> list = staffService.sort();
-        ModelAndView modelAndView = new ModelAndView("/show");
-        modelAndView.addObject("list",list);
-        return modelAndView;
-    }
-
-    @PostMapping("/reverse")
-    public ModelAndView reverse(){
-        List<Staff> list = staffService.reverse();
-        ModelAndView modelAndView = new ModelAndView("/show");
-        modelAndView.addObject("list",list);
-        return modelAndView;
-    }
-
     @GetMapping("/detail/{id}")
     public ModelAndView detail(@PathVariable int id){
         Optional<Staff> staff = staffService.findById(id);
@@ -103,4 +87,25 @@ public class StaffController {
         return modelAndView;
     }
 
+    @PostMapping ("/search")
+    public ModelAndView searchByName (@RequestParam String search){
+        ModelAndView modelAndView = new ModelAndView("show");
+        modelAndView.addObject("staff" , staffService.findByName(search));
+        return modelAndView;
+    }
+    @GetMapping ("/sortsalary")
+    public ModelAndView sortsalary(){
+        ModelAndView modelAndView = new ModelAndView("show");
+        List<Staff> sortSalary = staffService.sortsalary();
+        modelAndView.addObject("staff",sortSalary);
+        return modelAndView;
+
+    }
+    @GetMapping ("/sortage")
+    public ModelAndView sortage(){
+        ModelAndView modelAndView = new ModelAndView("show");
+        List<Staff> sortAge = staffService.sortage();
+        modelAndView.addObject("staff",sortAge);
+        return modelAndView;
+    }
 }
