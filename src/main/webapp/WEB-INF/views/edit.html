@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post" enctype="multipart/form-data">
+    <div>
+        <div>
+            <button>
+                <a href="/staff">Back to homepage</a>
+            </button>
+        </div>
+        <div>
+            <div>
+                <h1>Staff information</h1>
+            </div>
+            <div>
+                <table th:object="${editstaff}">
+                    <tr>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Salary</th>
+                        <th>Branch</th>
+                    </tr>
+                    <tr>
+                        <td><input th:field="*{name}"></td>
+                        <td><input th:field="*{age}"></td>
+                        <td><input th:field="*{salary}"></td>
+                        <td>
+                            <select name="idBranch">
+                                <option th:each="s, loop:${list}" th:value="${s.idbranch}" th:text="${s.namebranch}"></option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div>
+                <button type="submit">Edit Staff</button>
+            </div>
+        </div>
+    </div>
+</form>
+</body>
+</html>

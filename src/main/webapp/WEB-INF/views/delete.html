@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post">
+    <div>
+        <div>
+            <button>
+                <a href="/staff">Back to homepage</a>
+            </button>
+        </div>
+        <div>
+            <div>
+                <h1>Staff information</h1>
+            </div>
+            <div>
+                <table th:object="${deletestaff}">
+                   <h2>Delete ?</h2>
+                    <td>
+                        <button type="submit">Delete Staff</button>
+                    </td>
+                </table>
+            </div>
+        </div>
+    </div>
+</form>
+</body>
+</html>

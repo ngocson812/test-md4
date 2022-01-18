@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <div>
+        <button>
+            <a href="/staff">Back to homepage</a>
+        </button>
+    </div>
+    <div>
+        <div>
+            <h1>Staff information</h1>
+        </div>
+        <div>
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Salary</th>
+                    <th>Branch</th>
+                </tr>
+                <tr th:object="${detailstaff}">
+                    <td><input type="text" th:field="*{name}"/></td>
+                    <td><input type="text" th:field="*{age}"/></td>
+                    <td><input type="text" th:field="*{salary}"/></td>
+                    <td><input type="text" th:field="*{branch.namebranch}"/> </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

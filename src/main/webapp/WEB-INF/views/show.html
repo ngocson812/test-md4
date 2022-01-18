@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Staff Management</h1>
+<button><a href="/create">Create</a></button>
+<form action="/sort" method="post">
+    <button type="submit">Sort by age</button>
+</form>
+
+<table border="2">
+    <tr>
+        <th>Staff Code</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Salary</th>
+        <th>Branch</th>
+        <th colspan="2">Action</th>
+    </tr>
+    <tr th:each="s,loop :${staff}">
+        <td th:text="${loop.count}"></td>
+        <td><a th:href="@{/detail/{id}(id=${s.id})}" th:text="${s.name}"></a></td>
+        <td th:text="${s.age}"></td>
+        <td th:text="${s.salary}"></td>
+        <td th:text="${s.branch.namebranch}"></td>
+        <td>
+            <button>
+                <a th:href="@{/edit/{id}(id=${s.id})}">Edit</a>
+            </button>
+        </td>
+        <td>
+            <button>
+                <a th:href="@{/delete/{id}(id=${s.id})}">Delete</a>
+            </button>
+        </td>
+    </tr>
+</table>
+</body>
+</html>
